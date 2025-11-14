@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "cmis-api-collection",
+		"name": "CMIS API - MGI",
+		"description": "Collection completa para testar a API REST CMIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}}/api/health",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "health"]
+				}
+			}
+		},
+		{
+			"name": "Capabilities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/capabilities",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "capabilities"]
+				}
+			}
+		},
+		{
+			"name": "Repositories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/repositories",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "repositories"]
+				}
+			}
+		},
+		{
+			"name": "List Contents - Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/contents?path=/",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "contents"],
+					"query": [
+						{
+							"key": "path",
+							"value": "/"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "List Contents - Images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/contents?path=/sites/swsdp/documentLibrary/Agency Files/Images",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "contents"],
+					"query": [
+						{
+							"key": "path",
+							"value": "/sites/swsdp/documentLibrary/Agency Files/Images"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Folder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Pasta Teste",
+							"type": "text"
+						},
+						{
+							"key": "path",
+							"value": "/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/folders",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "folders"]
+				}
+			}
+		},
+		{
+			"name": "Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": [],
+							"description": "Arquivo para upload"
+						},
+						{
+							"key": "path",
+							"value": "/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/upload",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "upload"]
+				}
+			}
+		},
+		{
+			"name": "Download Document",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/download?id=7bb9c846-fcc5-43b5-a893-39e46ebe94d4",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "download"],
+					"query": [
+						{
+							"key": "id",
+							"value": "7bb9c846-fcc5-43b5-a893-39e46ebe94d4",
+							"description": "ID do documento (exemplo: coins.JPG)"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Search Documents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search?q=test",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "test"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Search JPG Files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search?q=JPG",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "JPG"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Lock Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "documentId",
+							"value": "7bb9c846-fcc5-43b5-a893-39e46ebe94d4",
+							"type": "text"
+						},
+						{
+							"key": "systemId",
+							"value": "Sistema-A",
+							"type": "text"
+						},
+						{
+							"key": "timeout",
+							"value": "30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/locks",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "locks"]
+				}
+			}
+		},
+		{
+			"name": "Check Document Lock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/locks?documentId=7bb9c846-fcc5-43b5-a893-39e46ebe94d4",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "locks"],
+					"query": [
+						{
+							"key": "documentId",
+							"value": "7bb9c846-fcc5-43b5-a893-39e46ebe94d4"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "List All Locks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/locks",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "locks"]
+				}
+			}
+		},
+		{
+			"name": "Unlock Document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/locks?documentId=7bb9c846-fcc5-43b5-a893-39e46ebe94d4&systemId=Sistema-A",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "locks"],
+					"query": [
+						{
+							"key": "documentId",
+							"value": "7bb9c846-fcc5-43b5-a893-39e46ebe94d4"
+						},
+						{
+							"key": "systemId",
+							"value": "Sistema-A"
+						}
+					]
+				}
+			}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost/cmis",
+			"type": "string"
+		}
+	]
+}
+

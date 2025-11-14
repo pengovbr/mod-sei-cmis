@@ -1,0 +1,22 @@
+{
+  "config": {
+    "vendor-dir": "./src/vendor",
+    "platform": {
+      "php": "8.2"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "sei/"
+    }
+  }, 
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
+      
+  "require-dev": {
+    "pheromone/phpcs-security-audit": "*" ,
+    "phpcompatibility/php-compatibility": "^9.3",
+    "rector/rector": "^2.0"
+  }
+}

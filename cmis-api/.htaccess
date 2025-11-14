@@ -1,0 +1,29 @@
+# Configuração Apache para API CMIS
+# Usa index.php como arquivo padrão
+
+# Habilitar rewrite
+RewriteEngine On
+
+# Redirecionar /api/* para /api/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Usar index.php como padrão quando acessar /api/
+DirectoryIndex index.php
+
+# Headers CORS para API
+#Header always set Access-Control-Allow-Origin "*"
+#Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+#Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Configurações de upload
+php_value upload_max_filesize 100M
+php_value post_max_size 100M
+php_value max_execution_time 300
+php_value memory_limit 256M
+
+# Logs de erro
+php_value log_errors On
+php_value error_log logs/php_errors.log
+

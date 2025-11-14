@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Aplicação PHP CMIS API
+  cmis-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cmis-api
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./logs:/var/www/html/logs
+    environment:
+      - CMIS_BROWSER_URL=http://host.docker.internal:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser
+      - CMIS_USERNAME=${CMIS_USERNAME:-admin}
+      - CMIS_PASSWORD=${CMIS_PASSWORD:-admin}
+      - CMIS_REPOSITORY_ID=${CMIS_REPOSITORY_ID:--default-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    network_mode: bridge
+
+networks:
+  cmis_network:
+    driver: bridge
+
+volumes:
+  logs:

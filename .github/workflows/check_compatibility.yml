@@ -1,0 +1,21 @@
+name: "CI"
+
+on:
+  push:
+    paths:
+      - "**.php"
+      - "phpcs.xml"
+      - ".github/workflows/check_compatibility.yml"
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting your configuration from GitHub
+        uses: actions/checkout@v1
+      - name: php-codesniffer
+        uses: pipeline-components/php-codesniffer@v0.12.3
+        with:
+          directory: "./src/"
+          options: "-p -n -s --colors --standard=PHPCompatibility --runtime-set testVersion 5.6"
+

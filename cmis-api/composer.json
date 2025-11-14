@@ -1,0 +1,29 @@
+{
+    "name": "mgis/cmis-client",
+    "description": "Projeto de exemplo para integração CMIS com PHP - MGI",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "optigov/php-cmis-client": "^1.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MGI\\CMIS\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MGI\\CMIS\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
